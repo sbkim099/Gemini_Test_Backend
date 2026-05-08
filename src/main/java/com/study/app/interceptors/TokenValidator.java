@@ -37,6 +37,6 @@ public class TokenValidator implements HandlerInterceptor{
 			}
 		}
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		return false; // 토큰이 애초에 없거나 Bearer로 시작하지 않을 때
+		return false; 
 	}
 }
