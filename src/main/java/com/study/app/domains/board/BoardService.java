@@ -18,4 +18,8 @@ public class BoardService {
 	public List<BoardDTO> getStartEnd(Long start, Long end){
 		return dao.getStartEnd(start, end);
 	}
+	
+	public BoardDTO getPostDetail(Long seq){
+		return dao.getPostDetail(seq);
+	}
 }
