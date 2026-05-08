@@ -1,0 +1,42 @@
+package com.study.app.interceptors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import com.study.app.utils.JWTUtil;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class TokenValidator implements HandlerInterceptor{
+	
+	@Autowired
+	private JWTUtil jwt;
+	
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		
+		if(request.getMethod().equalsIgnoreCase("OPTIONS")) {
+			response.setStatus(HttpServletResponse.SC_OK);
+			return true;
+		}
+		
+		String authHeader = request.getHeader("Authorization");
+		if(authHeader != null && authHeader.startsWith("Bearer")) {
+			String token = authHeader.substring(7);
+			
+			try {
+				String id = jwt.getSubject(token);
+				request.setAttribute("loginId", id);
+				return true;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		return false; // 토큰이 애초에 없거나 Bearer로 시작하지 않을 때
+	}
+}
