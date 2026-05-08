@@ -24,4 +24,8 @@ public class BoardDAO {
 		param.put("end", end);
 		return mybatis.selectList("Board.getStartEnd", param);
 	}
+	
+	public BoardDTO getPostDetail(Long seq){
+		return mybatis.selectOne("Board.getPostDetail", seq);
+	}
 }
