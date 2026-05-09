@@ -22,4 +22,8 @@ public class BoardService {
 	public BoardDTO getPostDetail(Long seq){
 		return dao.getPostDetail(seq);
 	}
+	
+	public void insert(BoardDTO dto) {
+		dao.insert(dto);
+	}
 }

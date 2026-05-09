@@ -28,4 +28,8 @@ public class BoardDAO {
 	public BoardDTO getPostDetail(Long seq){
 		return mybatis.selectOne("Board.getPostDetail", seq);
 	}
+	
+	public int insert(BoardDTO dto) {
+		return mybatis.insert("Board.insert", dto);
+	}
 }
