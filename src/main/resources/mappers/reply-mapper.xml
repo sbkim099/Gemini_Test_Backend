@@ -11,4 +11,12 @@
   	<insert id="insert">
   		insert into reply values(reply_seq.nextval, #{writer}, #{contents}, sysdate, #{parent_seq})
   	</insert>
+  	
+  	<update id="update">
+  		update reply set contents = #{contents} where seq = #{seq}
+  	</update>
+  	
+  	<delete id="delete">
+  		delete from reply where seq = #{seq}
+  	</delete>
 </mapper>

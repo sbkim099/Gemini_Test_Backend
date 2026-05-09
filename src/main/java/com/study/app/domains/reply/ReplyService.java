@@ -18,4 +18,12 @@ public class ReplyService {
 	public void addReply(ReplyDTO dto) {
 		replyDao.addReply(dto);
 	}
+	
+	public void updateReply(ReplyDTO dto) {
+		replyDao.updateReply(dto);
+	}
+	
+	public void deleteReply(Long seq) {
+		replyDao.deleteReply(seq);
+	}
 }

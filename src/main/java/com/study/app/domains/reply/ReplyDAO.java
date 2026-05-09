@@ -19,4 +19,12 @@ public class ReplyDAO {
 	public void addReply(ReplyDTO dto) {
 		batis.insert("Reply.insert",dto);
 	}
+	
+	public void updateReply(ReplyDTO dto) {
+		batis.update("Reply.update", dto);
+	}
+	
+	public void deleteReply(Long seq) {
+		batis.delete("Reply.delete", seq);
+	}
 }
