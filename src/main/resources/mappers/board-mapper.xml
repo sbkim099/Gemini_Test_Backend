@@ -15,4 +15,8 @@
   <select id="getPostDetail" resultType="com.study.app.domains.board.BoardDTO">
   	select * from board where seq = #{seq}
   </select>
+  
+  <insert id="insert">
+  	insert into board values(board_seq.nextval, #{writer}, #{title}, #{contents}, 0, sysdate)
+  </insert>
 </mapper>
