@@ -19,4 +19,12 @@
   <insert id="insert">
   	insert into board values(board_seq.nextval, #{writer}, #{title}, #{contents}, 0, sysdate)
   </insert>
+  
+  <update id="updatePost">
+  	update board set title = #{title}, contents = #{contents} where seq = #{seq}
+  </update>
+  
+  <delete id="deletePost">
+  	delete from board where seq = #{seq}
+  </delete>
 </mapper>

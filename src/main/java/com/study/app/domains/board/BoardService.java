@@ -26,4 +26,12 @@ public class BoardService {
 	public void insert(BoardDTO dto) {
 		dao.insert(dto);
 	}
+	
+	public void updatePost(Long seq, BoardDTO dto) {
+		dao.updatePost(seq, dto);
+	}
+	
+	public void deletePost(Long seq) {
+		dao.deletePost(seq);
+	}
 }
