@@ -5,7 +5,7 @@
 <mapper namespace="Reply">
   	
   	<select id="selectByParentSeq" resultType="com.study.app.domains.reply.ReplyDTO">
-  		select * from reply where parent_seq = #{parent_seq}
+  		select * from reply where parent_seq = #{parent_seq} order by seq desc
   	</select>
   	
   	<insert id="insert">
