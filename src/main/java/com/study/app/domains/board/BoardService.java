@@ -22,4 +22,16 @@ public class BoardService {
 	public BoardDTO getPostDetail(Long seq){
 		return dao.getPostDetail(seq);
 	}
+	
+	public void insert(BoardDTO dto) {
+		dao.insert(dto);
+	}
+	
+	public void updatePost(Long seq, BoardDTO dto) {
+		dao.updatePost(seq, dto);
+	}
+	
+	public void deletePost(Long seq) {
+		dao.deletePost(seq);
+	}
 }

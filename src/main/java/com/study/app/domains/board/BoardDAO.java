@@ -28,4 +28,20 @@ public class BoardDAO {
 	public BoardDTO getPostDetail(Long seq){
 		return mybatis.selectOne("Board.getPostDetail", seq);
 	}
+	
+	public int insert(BoardDTO dto) {
+		return mybatis.insert("Board.insert", dto);
+	}
+	
+	public int updatePost(Long seq, BoardDTO dto) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("seq", seq);
+		param.put("title", dto.getTitle());
+		param.put("contents", dto.getContents());
+		return mybatis.update("Board.updatePost", param);
+	}
+	
+	public int deletePost(Long seq) {
+		return mybatis.delete("Board.deletePost", seq);
+	}
 }
