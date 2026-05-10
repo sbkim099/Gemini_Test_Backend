@@ -12,11 +12,11 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Autowired
 	private TokenValidator testInterceptor;
-	
+	//컨트롤러에 도달하기 전 문 앞에서 검사 (이미 여기서 통과/거부 결정됨)
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(testInterceptor)
 		.addPathPatterns("/**")
-		.excludePathPatterns("/auth/login");
+		.excludePathPatterns("/auth/login");//board는 전체 토큰 엉ㅄ어도 보내줌
 	}
 }

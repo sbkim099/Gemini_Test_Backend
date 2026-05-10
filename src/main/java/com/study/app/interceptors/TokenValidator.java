@@ -24,6 +24,31 @@ public class TokenValidator implements HandlerInterceptor{
 			return true;
 		}
 		
+		// 2. [추가] 회원가입 및 중복체크 예외 처리
+        String uri = request.getRequestURI();
+        String method = request.getMethod();
+
+        // /members로 시작하는 주소들에 대해
+        if (uri.startsWith("/members/idExist")) {
+            // POST 방식(회원가입)이거나 GET 방식(중복체크)이면 통과!
+            if (method.equalsIgnoreCase("GET")) {
+                return true;
+            }
+        }
+        if(uri.startsWith("/members")) {
+        	if(method.equalsIgnoreCase("POST")) {
+        		return true;
+        	}
+        }
+        
+        
+//        if (uri.startsWith("/board")) {
+//            if (method.equalsIgnoreCase("GET")) {
+//                return true; // board의 get들만 노토큰으로 통과
+//            }
+//            // POST, PUT, DELETE는 401처리
+//        }
+		
 		String authHeader = request.getHeader("Authorization");
 		if(authHeader != null && authHeader.startsWith("Bearer")) {
 			String token = authHeader.substring(7);
@@ -37,6 +62,6 @@ public class TokenValidator implements HandlerInterceptor{
 			}
 		}
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		return false; // 토큰이 애초에 없거나 Bearer로 시작하지 않을 때
+		return false; 
 	}
 }
