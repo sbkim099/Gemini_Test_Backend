@@ -35,6 +35,12 @@ public class TokenValidator implements HandlerInterceptor{
                 return true;
             }
         }
+        if (uri.startsWith("/board")) {
+            if (method.equalsIgnoreCase("GET")) {
+                return true; // board의 get들만 노토큰으로 통과
+            }
+            // POST, PUT, DELETE는 401처리
+        }
 		
 		String authHeader = request.getHeader("Authorization");
 		if(authHeader != null && authHeader.startsWith("Bearer")) {

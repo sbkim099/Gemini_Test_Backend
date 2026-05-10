@@ -17,6 +17,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(testInterceptor)
 		.addPathPatterns("/**")
-		.excludePathPatterns("/auth/login");
+		.excludePathPatterns("/auth/login",
+				"/members/**",
+				"/board/**");//board는 전체 토큰 엉ㅄ어도 보내줌
 	}
 }

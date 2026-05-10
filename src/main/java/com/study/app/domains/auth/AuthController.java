@@ -31,7 +31,6 @@ public class AuthController {
 	
 	@PostMapping("login")
 	public ResponseEntity<Map<String,String>> isLogin(@RequestBody MembersDTO dto){
-		System.out.println(dto.getId()+dto.getPw());
 		//로그인할때도 getsha로!
 		String getShaPw = EncrptionUtils.getSha512(dto.getPw());
 		dto.setPw(getShaPw);
@@ -45,7 +44,6 @@ public class AuthController {
 			String token = jwt.createToken(dto.getId());
 			result.put("token", token);
 			result.put("id",dto.getId());
-			System.out.println(dto.getId()+dto.getPw());
 			return ResponseEntity.ok(result);
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -68,7 +66,6 @@ public class AuthController {
 	 */
 	@GetMapping
 	public ResponseEntity<Void> memberCheck(@RequestAttribute("loginId") String id){//컨트롤러에서 꺼내기 파라미터에 @RequestAttribute만 적어주면 스프링이 알아서 값을 채워
-		System.out.println("membercheck:"+id);
 		return ResponseEntity.ok().build();
 	}
 }

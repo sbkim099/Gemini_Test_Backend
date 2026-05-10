@@ -24,7 +24,6 @@ public class MembersController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Integer> dupCheck(@PathVariable String id){
 		int member = membersServ.dupCheck(id);
-		System.out.println("dupCheck"+member);
 		return ResponseEntity.ok(member);
 	}
 	
