@@ -24,6 +24,18 @@ public class TokenValidator implements HandlerInterceptor{
 			return true;
 		}
 		
+		// 2. [추가] 회원가입 및 중복체크 예외 처리
+        String uri = request.getRequestURI();
+        String method = request.getMethod();
+
+        // /members로 시작하는 주소들에 대해
+        if (uri.startsWith("/members")||uri.startsWith("/auth")) {
+            // POST 방식(회원가입)이거나 GET 방식(중복체크)이면 통과!
+            if (method.equalsIgnoreCase("POST") || method.equalsIgnoreCase("GET")) {
+                return true;
+            }
+        }
+		
 		String authHeader = request.getHeader("Authorization");
 		if(authHeader != null && authHeader.startsWith("Bearer")) {
 			String token = authHeader.substring(7);

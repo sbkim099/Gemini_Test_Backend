@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.study.app.commons.EncrptionUtils;
+
 @Repository
 public class MembersDAO {
 
@@ -15,6 +17,12 @@ public class MembersDAO {
 	}
 	
 	public int signUp(MembersDTO dto) {
+		String getShaPw = EncrptionUtils.getSha512(dto.getPw());
+		dto.setPw(getShaPw);
 		return mybatis.insert("Members.signUp",dto);
+	}
+	
+	public int isLogin(MembersDTO dto) {
+		return mybatis.selectOne("Members.isLogin",dto);
 	}
 }

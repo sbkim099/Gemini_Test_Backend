@@ -6,9 +6,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class MembersService {
 	@Autowired
-	private MembersDAO memberdao;
+	private MembersDAO membersDAO;
 	
 	public int dupCheck(String id) {
-		return memberdao.dupCheck(id);
+		return membersDAO.dupCheck(id);
+	}
+	
+	public int signUp(MembersDTO dto) {
+		return membersDAO.signUp(dto);
 	}
 }
