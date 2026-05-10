@@ -35,8 +35,7 @@ public class AuthController {
 		String getShaPw = EncrptionUtils.getSha512(dto.getPw());
 		dto.setPw(getShaPw);
 		int isUser = authServ.isLogin(dto);
-		
-		
+				
 		//있는 인간인지 쳌
 		System.out.println("login:"+isUser);
 		Map<String,String> result = new HashMap<>();
@@ -49,23 +48,5 @@ public class AuthController {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		
 	}
-	/*
-	 @GetMapping("membersOnly")
-	public ResponseEntity <String> memebersOnly(HttpServletRequest request){
-		String authHeader = request.getHeader("Authorization");//로그인한 고객 입장
-		String token = authHeader.substring(7);//찐 토큰만 꺼내옴
-		try {
-			jwt.validation(token);//유효한 토큰(로그인정보)인지 확인
-			return ResponseEntity.ok("Good"); // 맞으면 good 보냄
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 401 주기
-	}   
-	 */
-	@GetMapping
-	public ResponseEntity<Void> memberCheck(@RequestAttribute("loginId") String id){//컨트롤러에서 꺼내기 파라미터에 @RequestAttribute만 적어주면 스프링이 알아서 값을 채워
-		return ResponseEntity.ok().build();
-	}
+
 }

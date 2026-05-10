@@ -29,18 +29,25 @@ public class TokenValidator implements HandlerInterceptor{
         String method = request.getMethod();
 
         // /members로 시작하는 주소들에 대해
-        if (uri.startsWith("/members")||uri.startsWith("/auth")) {
+        if (uri.startsWith("/members/idExist")) {
             // POST 방식(회원가입)이거나 GET 방식(중복체크)이면 통과!
-            if (method.equalsIgnoreCase("POST") || method.equalsIgnoreCase("GET")) {
+            if (method.equalsIgnoreCase("GET")) {
                 return true;
             }
         }
-        if (uri.startsWith("/board")) {
-            if (method.equalsIgnoreCase("GET")) {
-                return true; // board의 get들만 노토큰으로 통과
-            }
-            // POST, PUT, DELETE는 401처리
+        if(uri.startsWith("/members")) {
+        	if(method.equalsIgnoreCase("POST")) {
+        		return true;
+        	}
         }
+        
+        
+//        if (uri.startsWith("/board")) {
+//            if (method.equalsIgnoreCase("GET")) {
+//                return true; // board의 get들만 노토큰으로 통과
+//            }
+//            // POST, PUT, DELETE는 401처리
+//        }
 		
 		String authHeader = request.getHeader("Authorization");
 		if(authHeader != null && authHeader.startsWith("Bearer")) {

@@ -21,7 +21,7 @@ public class MembersController {
 	@Autowired
 	private MembersService membersServ;
 	
-	@GetMapping("/{id}")
+	@GetMapping("idExist/{id}")
 	public ResponseEntity<Integer> dupCheck(@PathVariable String id){
 		int member = membersServ.dupCheck(id);
 		return ResponseEntity.ok(member);
