@@ -37,7 +37,6 @@ public class AuthController {
 		int isUser = authServ.isLogin(dto);
 				
 		//있는 인간인지 쳌
-		System.out.println("login:"+isUser);
 		Map<String,String> result = new HashMap<>();
 		if(isUser>0) {//true일때
 			String token = jwt.createToken(dto.getId());
